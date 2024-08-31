@@ -24,7 +24,7 @@ def select_random_word(categories):
     return category, word
 
 # Example usage
-filename = HangmanRandomWordGenerator.txt
+filename = 'HangmanRandomWordGenerator.txt'
 categories = load_categories(filename)
 category, word = select_random_word(categories)
 
