@@ -1,31 +1,27 @@
 import random
+def load_categories(HangmanRandomWordGenerator.txt):
+    with open(HangmanRandomWordGenerator.txt, 'r') as file:
+        lines = file.read().strip().split('\n')
 
-def load_categories(HangmanRandomWordGenerator.txt);
-  with open(HangmanRandomWordGenerator.txt, 'r') as file:
-    lines = file.read().strip().split('\n')
+        categories = {}
+        current_categories = None
 
-  categories = {}
-  current_category = None
+        for line in lines:
+            if line.strip(): # Ignore empty lines
+                if not current_category: #It's a category
+                    current_category = line.strip()
 
-  for line in lines:
-    if line.strip(): # Ignore empty lines
-      if not current_category = # It's not a category
-        current_category = line.strip()
-        categories[current_category] = []
-    else: # It's a word
-
-categories[current_category].append(line.strip())
-  current_caategory = None
-return categories
-
+                    categories[current_category] = []
+                else: # It's a word
+                    categories[current_category].append(line.strip())
+                    current_category = None
+                    return categories
 def select_random_word(categories):
-  # Choose a random category
-  category = random.choice(list(categories.keys()))
-
-# Choose a random word from that category
-word = random.choice(categories[category])
-
-return category, word
+    # Choose a random category
+    category = random.choice(list(categories.keys()))
+    # Choose a random word from the category
+    word = random.choice(categories[category])
+    return category, word
 
 # Example usage
 HangmanRandomWordGenerator.txt = 'categories.txt'
