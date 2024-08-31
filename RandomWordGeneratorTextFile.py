@@ -1,7 +1,7 @@
 import random
 
-def load_categories(file_path);
-  with open(file_path, 'r') as file:
+def load_categories(HangmanRandomWordGenerator.txt);
+  with open(HangmanRandomWordGenerator.txt, 'r') as file:
     lines = file.read().strip().split('\n')
 
   categories = {}
@@ -22,7 +22,7 @@ def select_random_word(categories):
   # Choose a random category
   category = random.choice(list(categories.keys()))
 
-# Choose a random word from that ccategory
+# Choose a random word from that category
 word = random.choice(categories[category])
 
 return category, word
