@@ -1,4 +1,4 @@
-# Adjective
+# Adjectives
 interesting
 intelligent
 admirable
@@ -20,7 +20,7 @@ vexing
 pensive
 dauntless
 
-# Verb
+# Verbs
 quell
 conquer
 devour
@@ -42,7 +42,7 @@ nurture
 savor
 unravel
 
-# Country
+# Countries
 vanuatu
 japan
 myanmar
