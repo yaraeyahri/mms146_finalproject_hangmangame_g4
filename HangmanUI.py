@@ -4,10 +4,10 @@ class HangmanUI:
         self.guesses = set()
         self.incorrect_guesses = 0
         self.max_attempts = 6
+        self.score = 0  # Show score
 
     def display_hangman(self):
-        incorrect_guesses = len(self.guesses - set(self.word))
-        print(HANGMAN_STAGES[incorrect_guesses])
+        print(HANGMAN_STAGES[self.incorrect_guesses])
 
     def display_word_status(self):
         display_word = ''.join([letter if letter in self.guesses else '_' for letter in self.word])
@@ -18,6 +18,7 @@ class HangmanUI:
             print("Sorry to see you go!")
         else:
             print("Awesome! You guessed the word correctly!")
+        print(f"Your final score: {self.score}")
 
     def get_user_guess(self):
         while True:
@@ -34,6 +35,7 @@ class HangmanUI:
 
             if self.incorrect_guesses >= self.max_attempts:
                 print(f"Game over! The word was '{self.word}'.")
+                self.display_end_game_message()
                 break
 
             guess = self.get_user_guess()
@@ -42,11 +44,17 @@ class HangmanUI:
                 print("You already guessed that letter. Try again.")
             else:
                 self.guesses.add(guess)
-                if guess not in self.word:
+                if guess in self.word:
+                    print("Correct guess!")
+                    self.score += 10  # Add points for each correct guess
+                else:
+                    print("Incorrect guess.")
                     self.incorrect_guesses += 1
+                    self.score -= 5  # Deduct points for each incorrect guess
 
             if all(letter in self.guesses for letter in self.word):
                 print(f"Congratulations! You guessed the word '{self.word}' correctly!")
+                self.display_end_game_message()
                 break
 
 # Define the hangman stages
@@ -135,14 +143,6 @@ HANGMAN_STAGES = [
 ]
 
 # Example usage:
-hangman_game = HangmanUI("island")
-hangman_game.display_word_status()  # Displays "_ _ _ _ _ _"
-hangman_game.guesses.add("i")
-hangman_game.display_word_status()  # Displays "i _ _ _ _ _"
-
-remaining_attempts = 3
-hangman_game.display_hangman()
-
 if __name__ == "__main__":
     hangman_game = HangmanUI("island")
     hangman_game.play_game()
