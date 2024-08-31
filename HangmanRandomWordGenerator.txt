@@ -41,3 +41,25 @@ Radiate
 Nurture
 Savor
 Unravel
+
+# Country
+Vanuatu
+Japan
+Myanmar
+Vietnam
+Finland
+Zimbabwe
+Philippines
+Austria
+Norway
+Morocco
+Oman
+Yemen
+Ireland
+Qatar
+Hungary
+Netherlands
+Russia
+Sweden
+Zambia
+Luxemboourg
