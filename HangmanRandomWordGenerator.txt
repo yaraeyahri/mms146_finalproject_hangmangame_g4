@@ -62,4 +62,4 @@ netherlands
 russia
 sweden
 zambia
-luxemboourg
+luxembourg
