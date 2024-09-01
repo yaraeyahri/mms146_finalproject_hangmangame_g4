@@ -1,6 +1,6 @@
 from HangmanUI import HangmanUI
 from HangmanGame import load_categories, select_category
-from RandomWordGenerator import select_random_word
+from HangmanRandomWordGenerator import select_random_word
 
 def test_load_categories():
     categories = load_categories('HangmanRandomWordGenerator.txt')
