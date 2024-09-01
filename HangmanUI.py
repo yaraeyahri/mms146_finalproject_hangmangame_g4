@@ -167,7 +167,6 @@ HANGMAN_STAGES = [
     """
 ]
 
-
 # Example usage:
 if __name__ == "__main__":
     filename = 'HangmanRandomWordGenerator.txt'
