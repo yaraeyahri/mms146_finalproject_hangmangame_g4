@@ -1,0 +1,24 @@
+from HangmanUI import HangmanUI
+from HangmanGame import load_categories, select_category
+from RandomWordGenerator import select_random_word
+
+def test_load_categories():
+    categories = load_categories('HangmanRandomWordGenerator.txt')
+    assert 'Adjectives' in categories
+    assert 'Verbs' in categories
+    assert 'Countries' in categories
+    assert 'interesting' in categories['Adjectives']
+    assert 'quell' in categories['Verbs']
+    assert 'japan' in categories['Countries']
+
+def test_select_category(monkeypatch):
+    categories = {'Adjectives': ['interesting', 'intelligent'], 'Verbs': ['quell', 'conquer'], 'Countries': ['japan', 'vietnam']}
+    # Mocking input to return '1'
+    monkeypatch.setattr('builtins.input', lambda _: '1')
+    selected_category = select_category(categories)
+    assert selected_category == 'Adjectives'
+
+def test_select_random_word():
+    categories = {'Adjectives': ['interesting', 'intelligent'], 'Verbs': ['quell', 'conquer'], 'Countries': ['japan', 'vietnam']}
+    word = select_random_word(categories, 'Adjectives')
+    assert word in ['interesting', 'intelligent']
