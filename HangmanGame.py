@@ -1,3 +1,4 @@
+import random
 class HangmanGame:
     def __init__(self, secret_word: str, max_attempts: int = 7):
         self.secret_word = secret_word  # The word
@@ -37,11 +38,50 @@ class HangmanGame:
 
     def word_guessed(self) -> bool:
         return all(letter in self.guessed_letters for letter in self.secret_word)
+def load_categories(filename):
+    categories = {}
+    current_category = None
+    with open(filename, 'r') as file:
+        for line in file:
+            line = line.strip()
+            if not line:  
+                continue
+            if line.startswith('#'): 
+                current_category = line[1:].strip()
+                categories[current_category] = []
+            else:  # 
+                if current_category is not None:
+                    categories[current_category].append(line)
+    return categories
+
+def select_category(categories):
+    print("Available categories:")
+    for i, category in enumerate(categories.keys(), 1):
+        print(f"{i}. {category}")
+    
+    while True:
+        choice = input("Choose a category by entering the corresponding number: ")
+        if choice.isdigit() and 1 <= int(choice) <= len(categories):
+            selected_category = list(categories.keys())[int(choice) - 1]
+            print(f"You have selected: {selected_category}")
+            return selected_category
+        else:
+            print("Invalid choice. Please enter a valid number.")
+
+def select_random_word(categories, selected_category):
+    word = random.choice(categories[selected_category])
+    return word
 
 
 # This is only for testing the class:
-def test_hangman_game():
-    game = HangmanGame("python")  # The secret word that must be guessed is "python".
+def start_game():
+    filename = 'HangmanRandomWordGenerator.txt' 
+    categories = load_categories(filename)
+    
+    selected_category = select_category(categories)
+    secret_word = select_random_word(categories, selected_category)
+    
+    game = HangmanGame(secret_word)
     
     while not game.game_over():
         print("\nWord: ", " ".join([letter if letter in game.guessed_letters else "_" for letter in game.secret_word]))
@@ -57,4 +97,4 @@ def test_hangman_game():
     
     game.display_result()
 
-test_hangman_game()
+start_game()
